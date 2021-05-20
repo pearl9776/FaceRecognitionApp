@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Face Recognition</string>
+    <string name="first_activity_txt">Recognate</string>
+    <string name="first_activity_txt2">Any Face !</string>
+    <string name="face_recognition">Face Recognition</string>
+    <string name="add_face">+ Add face</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="your_name">Enter Your Name</string>
+    <string name="added_photo_message">Your photo added successfully</string>
+</resources>
