@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <TextView
+            android:id="@+id/dlg_title"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            tools:text="@string/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/dlg_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_image_24"
+            />
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_gravity="center"
+            android:id="@+id/name_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="123dp"
+            android:layout_height="55dp"
+            android:hint="@string/your_name"
+            android:textColorHint="#038A91"
+            app:hintEnabled="true"
+            android:background="@android:color/transparent"
+            app:hintAnimationEnabled="true"
+            app:boxCornerRadiusBottomEnd="7dp"
+            app:boxCornerRadiusBottomStart="7dp"
+            app:boxCornerRadiusTopEnd="7dp"
+            app:boxCornerRadiusTopStart="7dp"
+            app:boxStrokeColor="#01F2FF"
+            app:boxStrokeWidth="4dp"
+            android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:elevation="3dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

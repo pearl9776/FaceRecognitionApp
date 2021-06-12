@@ -9,4 +9,8 @@
     <string name="take_photo">Take Photo</string>
     <string name="your_name">Enter Your Name</string>
     <string name="added_photo_message">Your photo added successfully</string>
+    <string name="name_empty">Please enter your name first!</string>
+    <string name="failed_capture">Capture image failed!</string>
+    <string name="not_found_detection">No face detected.Try again.</string>
+    <string name="dialog_title">Your Image is Ready!</string>
 </resources>

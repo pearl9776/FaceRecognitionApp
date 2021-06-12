@@ -1,21 +1,28 @@
 package com.example.facerecognitionproject;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.view.PreviewView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.facerecognitionproject.Helper.GraphicOverlay;
 import com.google.android.material.textfield.TextInputLayout;
+
+import dmax.dialog.SpotsDialog;
 
 public class AddFaceFragment extends Fragment {
 
@@ -27,11 +34,15 @@ public class AddFaceFragment extends Fragment {
     private static int REQUEST_CODE_PERMISSIONS = 200;
     private static final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
 
+    static ConstraintLayout consLayout;
     static PreviewView mPreviewView;
     static ImageButton captureImage;
     static ImageButton switchCamera;
     static AddFaceFragment fragment;
-    TextInputLayout name;
+    static AlertDialog alertDialog;
+    static GraphicOverlay graphicOverlay;
+    static ImageView imagePreview;
+           TextInputLayout name;
 
     public AddFaceFragment() {}
 
@@ -63,21 +74,27 @@ public class AddFaceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        findWidgets(view);
+        findViews(view);
+
+        alertDialog = new SpotsDialog.Builder().setContext(getActivity())
+                .setMessage("Please Wait,Proccessing...")
+                .setCancelable(false).build();
 
         if(allPermissionsGranted()){
-            CameraSource.start(fragment, getActivity(), mPreviewView, captureImage, switchCamera, name); //start camera if permission has been granted by user
+            CameraSource.start(getActivity(), mPreviewView, captureImage, switchCamera, name); //start camera if permission has been granted by user
         } else{
             ActivityCompat.requestPermissions(getActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
         }
 
     }
 
-    private void findWidgets(View view) {
+    private void findViews(View view) {
         mPreviewView = view.findViewById(R.id.viewFinder);
         captureImage = view.findViewById(R.id.camera_capture_button);
         switchCamera = view.findViewById(R.id.flip_camera);
         name = view.findViewById(R.id.name_field);
+        graphicOverlay = view.findViewById(R.id.graphic_overlay);
+        imagePreview = view.findViewById(R.id.image_preview);
     }
 
 
@@ -96,7 +113,7 @@ public class AddFaceFragment extends Fragment {
 
         if(requestCode == REQUEST_CODE_PERMISSIONS){
             if(allPermissionsGranted()){
-                CameraSource.start(fragment, getActivity(), mPreviewView, captureImage, switchCamera, name);
+                CameraSource.start(getActivity(), mPreviewView, captureImage, switchCamera, name);
             } else{
                 Toast.makeText(getActivity(), "Permissions not granted by the user.", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
@@ -105,9 +122,18 @@ public class AddFaceFragment extends Fragment {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onPause() {
         super.onPause();
     }
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+
 }
 
